@@ -8,59 +8,135 @@ namespace HelloDungeon
     {
         public void Run()
         {
-            // Test Commit
+            // Initialize Player Stats
+            int maxPlayerHealth = 5;
+            int playerHealth = 5;
+            int playerSkillPoints = 2;
+            int playerPower = 3;
+            int playerDefense = 1;
+            int playerMagicPower = 2;
+            int playerMagicDefense = 0;
+            string playerJob = "Adventurer";
+            string playerName = "None";
+            string playerChoice = "None";
+            bool isPlayerAlive = true;
 
-            // Initializes all player stats.
-            string playerName = "No Name";
-            float maxPlayerHealth = 10.0f;
-            float currentPlayerHealth = maxPlayerHealth;
-            int playerGold = 0;
-            int maxPlayerDeploy = 10;
-            int currentPlayerDeploy = 0;
-            float playerPower = 3.0f;
-            float playerArmor = 1.0f;
-            float playerSpeed = 2.0f;
-            bool isGameOver = false;
-            string playerChoice = "Nothing";
-            int[] playerArmy = { };
+            // Initializes Player Skills
+            bool knowsFireBall = false;
 
-            // Initializes all enemy stats.
-            string enemyName = "No Name";
-            float maxEnemyHealth = 1.0f;
-            float currentEnemyHealth = maxEnemyHealth;
-            float enemyPower = 1.0f;
-            float enemyArmor = 1.0f;
-            float enemySpeed = 0.0f;
-            int maxEnemyDeploy = 0;
-            int[] enemyArmy = { };
+            // Initializes Enemy Stats
+            int maxEnemyHealth = 0;
+            int enemyHealth = 0;
+            int enemySkillPoints = 0;
+            int enemyPower = 0;
+            int enemyDefense = 0;
+            int enemyMagicPower = 0;
+            int enemyMagicDefense = 0;
 
-            // Initializes how damage is dealt and taken.
-            float playerDamageDealt = (playerPower - enemyArmor);
-            float enemyDamageDealt = (enemyPower - enemyArmor);
+            // Sets Damage Dealing
+            int playerPhysicalAttack = playerPower - enemyDefense;
+            int enemyPhysicalAttack = enemyPower - enemyDefense;
+            int playerMagicAttack = playerMagicPower - enemyMagicDefense;
+            int enemyMagicAttack = enemyMagicPower - playerMagicDefense;
 
-            // Begins the game, and gives a description of the setting.
-            Console.WriteLine("The Dawnlow Mountains tower above you, reaching up far beyond into the sky. The valley you find yourself \n in is covered in the shadows of the great " +
-                "peaks. The snow crunches beneath your feet as you make your way towards \n Arden's Cross, a town found at the foot of the mountain. The sight of the fires of torches" +
-                " burning around the outer \n walls brings a sense of excitement to your wander-weary mind, carrying you the rest of the way to the gates.");
-            Console.Write("''old it!' The voice brings you back to your senses, no longer lost in thoughts. In front of you stands two \n fairly large guards, covered " +
-                "in garb with the crest of Arden's Cross on it. 'oo might you be?' One of the guards says, his accent thick and his voice scruffy. Please enter a name : ");
+            // Player Chooses Starting Name and Job
+            Console.Write("What is your name?\n" + "> ");
             playerName = Console.ReadLine();
-            Console.WriteLine("'Right den " + playerName + " yer free to go in. But don't let me 'ere ya cause any trouble.' The guard says, motioning for you to \n move inside" +
-                " the gates.");
-            Console.WriteLine("The town itself is as the valley surrounding it, cold and quiet. Even the town square, which you enter soon after \n passing the gates, is" +
-                " filled with the sounds of feet shuffling in the snow and small whispers as others pass one \n another on the street.");
-            Console.Write("There are a few local areas you can enter. A tavern at the end of the square, the faint sound of music coming from withing. The only other building" +
-                " that would seem to welcome you is a small shop close to you, the name on the sign reads 'General'. Where would you like to go?");
+            Console.Write("Welcome " + playerName + "! Now, pick a job.\n" + "1. Fighter\n" + "2. Caster\n" + "> ");
             playerChoice = Console.ReadLine().ToLower();
 
-            switch (playerChoice)
+            // Looks at the choice the player makes.
+            if (playerChoice == "1" || playerChoice == "fighter")
             {
-                case "tavern":
+                playerHealth = 10;
+                playerSkillPoints = 3;
+                playerPower = 5;
+                playerDefense = 3;
+                playerMagicPower = 1;
+                playerMagicDefense = 2;
+                playerJob = "Fighter";
+            }
+            else if (playerChoice == "2" || playerChoice == "caster")
+            {
+                playerHealth = 8;
+                playerSkillPoints = 5;
+                playerPower = 2;
+                playerDefense = 2;
+                playerMagicPower = 4;
+                playerMagicDefense = 3;
+                knowsFireBall = true;
+                playerJob = "Caster";
+            }
+            else
+            {
+                Console.WriteLine("You chose Adventurer.");
+            }
 
-                    break;
-                case "shop":
-                    break;
+            Console.WriteLine("Welcome to the world " + playerName + " the " + playerJob + "!");
+            Console.Write("Your stats are as follows :\n" + "Health : " + playerHealth + "\n" + "Power : " + playerPower + "\n" +
+                "Skill Points : " + playerSkillPoints + "\n" + "Defense : " + playerDefense + "\n" + "Magic Power : " + playerMagicPower + "\n" +
+                "Magic Defense : " + playerMagicDefense);
 
+            Console.WriteLine();
+
+            // Starts the battle.
+            Console.WriteLine("You come across a small goblin. It readies it's weapon to attack!");
+            Console.WriteLine("Battle Start!");
+
+            // Initializes Goblin Stats
+            maxEnemyHealth = 3;
+            enemyHealth = 3;
+            enemyPower = 2;
+            enemyDefense = 2;
+            enemyMagicPower = 0;
+            enemyMagicDefense = 1;
+
+            // Gives the player their first prompt.
+            Console.Write("You get the first swing, what will you do?\n" + "1. Attack\n" + "2. Skill\n" + "3. Inspect\n" + "> ");
+            playerChoice = Console.ReadLine().ToLower();
+
+            if (playerChoice == "1" || playerChoice == "attack")
+            {
+                Console.WriteLine("You swing your weapon!");
+                enemyHealth -= playerPhysicalAttack;
+                Console.WriteLine("Goblin takes " + playerPhysicalAttack + " damage!");
+                Console.ReadKey();
+            }
+            else if (playerChoice == "2" || playerChoice == "skill")
+            {
+                if (knowsFireBall)
+                {
+                    Console.Write("Choose a skill to use.\n" + "1. Fireball\n" + "> ");
+                    playerChoice = Console.ReadLine().ToLower();
+                    
+                    if(playerChoice == "1" || playerChoice == "fireball")
+                    {
+                        Console.WriteLine("You hold up your hand, and conjure a flaming sphere in your palm. The sphere is thrust forth, rocketing towards\n the goblin!");
+                        enemyHealth -= playerMagicAttack;
+                        Console.WriteLine("Goblin takes " + playerMagicAttack + " damage!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is not an option, so you swing your weapon!");
+                        enemyHealth -= playerPhysicalAttack;
+                        Console.WriteLine("Goblin takes " + playerPhysicalAttack + " damage!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You don't know any skills. And instead swing your weapon!");
+                    enemyHealth -= playerPhysicalAttack;
+                    Console.WriteLine("Goblin takes " + playerPhysicalAttack + " damage!");
+                }
+            }
+            else if (playerChoice == "3" || playerChoice == "inspect")
+            {
+                Console.WriteLine("The goblin seems feeble and weak, though it stands ready to strike.");
+            }
+
+            if(enemyHealth <= 0)
+            {
+                Console.WriteLine("Goblin is dead! Congrats, you win!");
             }
         }
     }
