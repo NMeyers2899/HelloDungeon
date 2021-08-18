@@ -8,27 +8,21 @@ namespace HelloDungeon
     {
         public void Run()
         {
-            // Health Exercise : Initializes health and healthRegen, then adds one to the other and prints it out.
-            //int healthRegen = 50;
-            //int health = 100;
-            //health += healthRegen;
-            //Console.WriteLine(health);
-
-            // Name Exercise : Initializes the name, asks the user to enter their name and prints it out with a nice greeting.
-            //string name = "Empty";
-            //Console.Write("Please enter your name : ");
-            //name = Console.ReadLine();
-            //Console.WriteLine("Hello " + name + "!");
+            // Test Commit
 
             // Initializes all player stats.
             string playerName = "No Name";
             float maxPlayerHealth = 10.0f;
             float currentPlayerHealth = maxPlayerHealth;
             int playerGold = 0;
+            int maxPlayerDeploy = 10;
+            int currentPlayerDeploy = 0;
             float playerPower = 3.0f;
             float playerArmor = 1.0f;
+            float playerSpeed = 2.0f;
             bool isGameOver = false;
             string playerChoice = "Nothing";
+            int[] playerArmy = { };
 
             // Initializes all enemy stats.
             string enemyName = "No Name";
@@ -36,11 +30,13 @@ namespace HelloDungeon
             float currentEnemyHealth = maxEnemyHealth;
             float enemyPower = 1.0f;
             float enemyArmor = 1.0f;
+            float enemySpeed = 0.0f;
+            int maxEnemyDeploy = 0;
+            int[] enemyArmy = { };
 
             // Initializes how damage is dealt and taken.
             float playerDamageDealt = (playerPower - enemyArmor);
             float enemyDamageDealt = (enemyPower - enemyArmor);
-
 
             // Begins the game, and gives a description of the setting.
             Console.WriteLine("The Dawnlow Mountains tower above you, reaching up far beyond into the sky. The valley you find yourself \n in is covered in the shadows of the great " +
@@ -55,15 +51,15 @@ namespace HelloDungeon
                 " filled with the sounds of feet shuffling in the snow and small whispers as others pass one \n another on the street.");
             Console.Write("There are a few local areas you can enter. A tavern at the end of the square, the faint sound of music coming from withing. The only other building" +
                 " that would seem to welcome you is a small shop close to you, the name on the sign reads 'General'. Where would you like to go?");
-            playerChoice = Console.ReadLine();
+            playerChoice = Console.ReadLine().ToLower();
 
-            // The choice between the tavern and the shop.
-            if(playerChoice == "tavern" || playerChoice == "Tavern")
+            switch (playerChoice)
             {
+                case "tavern":
 
-            }
-            else if (playerChoice == "shop" || playerChoice == "Shop")
-            {
+                    break;
+                case "shop":
+                    break;
 
             }
         }
