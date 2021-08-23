@@ -111,6 +111,8 @@ namespace HelloDungeon
             Console.WriteLine("Your stats are as follows\n" + "Health : " + playerHealth + "\n" + "Power : " + playerPower + "\n" +
                 "Skill Points : " + playerSkillPoints + "\n" + "Defense : " + playerDefense + "\n" + "Magic Power : " + playerMagicPower + "\n" +
                 "Magic Defense : " + playerMagicDefense);
+
+            ClearScreen();
         }
 
         /// <summary>
@@ -145,10 +147,10 @@ namespace HelloDungeon
         /// </summary>
         void Encounter1And2()
         {
-            Console.WriteLine("A man approaches you, a monkey sits happily on his shoulder. As they get closer, they stop suddenly.\n Despite the hood over their face, shielding their eyes, it is clear that they are staring at you." +
-                " For\n a moment, you stand there. Staring at the hooded figure. The monkey stands up, and puts a fist\n to its mouth. 'Ahem!' it coughs. 'I require you to solve my riddle! If you do, I'll grant you\n" +
-                " something few can ever hope to acquire.' It isn't every day that you come across monkeys giving\n riddles, so you accept the offer. 'However, you have only a few attempts. Four to be exact." +
-                " If\n you cannot solve it in those attempts, you lose. And do not get your reward.'");
+            Console.WriteLine("A man approaches you, a monkey sits happily on his shoulder. As they get closer, they stop suddenly. \nDespite the hood over their face, shielding their eyes, it is clear that they are staring at you." +
+                " For \na moment, you stand there. Staring at the hooded figure. The monkey stands up, and puts a fist \nto its mouth. 'Ahem!' it coughs. 'I require you to solve my riddle! If you do, I'll grant you \n" +
+                "something few can ever hope to acquire.' It isn't every day that you come across monkeys giving \nriddles, so you accept the offer. 'However, you have only a few attempts. Four to be exact." +
+                " If \nyou cannot solve it in those attempts, you lose. And do not get your reward.'");
 
             int attempts = 4;
             for (int i = 0; i < 4; i++)
@@ -159,8 +161,8 @@ namespace HelloDungeon
                 playerChoice = Console.ReadLine().ToLower();
                 if (playerChoice == "goblin")
                 {
-                    Console.WriteLine("The monkey lets out a loud shriek of a laugh, falling onto its back and rolling around. 'Oh,\n what a good guess! I suppose its time for your reward. Sick 'em!' The cloak is pulled" +
-                        " back,\n revealing a green goblin beneath wielding a hatchet. It lets out a roar, and rushes in to fight you.");
+                    Console.WriteLine("The monkey lets out a loud shriek of a laugh, falling onto its back and rolling around. 'Oh, \nwhat a good guess! I suppose its time for your reward. Sick 'em!' The cloak is pulled" +
+                        " back, \nrevealing a green goblin beneath wielding a hatchet. It lets out a roar, and rushes in to fight you.");
                     ClearScreen();
                     break;
                 }
@@ -171,8 +173,8 @@ namespace HelloDungeon
                 }
                 else
                 {
-                    Console.WriteLine("The monkey laughs, pointing at you as it does so. 'Oh you fool! You failed at such a simple task.\n Oh well, time to die!' The hooded figure pulls back their veil to reveal" +
-                    " they're a goblin. It\n rushes at you, roaring its battle cry!");
+                    Console.WriteLine("The monkey laughs, pointing at you as it does so. 'Oh you fool! You failed at such a simple task. \nOh well, time to die!' The hooded figure pulls back their veil to reveal" +
+                    " they're a goblin. It \nrushes at you, roaring its battle cry!");
                     ClearScreen();
                 }
             }
@@ -210,10 +212,10 @@ namespace HelloDungeon
                 {
                     Console.WriteLine("You find no reason to rush. After all, there's probably not another exit to that cave. So you sit and rest.");
                     ClearScreen();
-                    Console.WriteLine("You feel refreshed!\n You recovered " + (maxPlayerHealth - playerHealth) + " health and " + (maxPlayerSkillPoints - playerSkillPoints) + " skill points!");
+                    Console.WriteLine("You feel refreshed! \nYou recovered " + (maxPlayerHealth - playerHealth) + " health and " + (maxPlayerSkillPoints - playerSkillPoints) + " skill points!");
                     ClearScreen();
-                    Console.WriteLine("You stand from your makeshift campsite, prepared to face the challenge ahead. You look back to your fallen foe, only to recoil as the body seems\n to have vanished!" +
-                        " What remains is a small puddle of goo.\n Refreshed, but now slightly unsettled, you make your way into the cave.");
+                    Console.WriteLine("You stand from your makeshift campsite, prepared to face the challenge ahead. \nYou look back to your fallen foe, only to recoil as the body seems to have \nvanished!" +
+                        " What remains is a small puddle of something viscous. Refreshed, \nbut now slightly unsettled, you make your way into the cave.");
                     ClearScreen();
                     validInputRecieved = true;
                 }
@@ -223,6 +225,57 @@ namespace HelloDungeon
                 }
             }
             validInputRecieved = false;
+        }
+
+        /// <summary>
+        /// The player faces off against the monkey and gets to the end of the game.
+        /// </summary>
+        void Encounter4()
+        {
+            Console.WriteLine("As you enter the cave, you notice it is well lit. Torches line the walls, close \nenough to keep shadows at bay. The distinct sound of footsteps fills the natural \nhallway" +
+                " as you step down into the unknown. As you approach the end of the tunnel, \nthe sounds of laughter echo through the hall. The laughter of that monkey. The \npath opens up considerably" +
+                " as you reach the end, into a large makeshift room.");
+            ClearScreen();
+            Console.WriteLine("The monkey stands high on a pile of boxes, screeching orders to a band of goblins. \nThe monkey spots you, looking up and smiling. 'Ah, you finally made it.' It says, \n" +
+                "adjusting its hat. 'You're just in time, my ascension is nigh!' It raises its arms \nup to the ceiling and the ground begins to rumble. After a few moments, the monkey begins to " +
+                "grow. \nSimply bigger at first, but then something changes.");
+            ClearScreen();
+            Console.WriteLine("The monkey's flesh begins to morph, \nas large, discolored tumors sprout from its back. It crys out, the growths changing the creature's form \ninto something monstrous. " +
+                "Something snuffs out the torches closest to it, keeping the \nmonkey's transformation hidden in shadow. The screams are clearly no longer that of something \nfrom this world. The goblin's" +
+                " attempt to run as tendrils rip through the darkness and impale \nthe goblins on them. The tendrils retreat with their prey." + " 'Oh gods! Help me!' The now distorted, \nmonstrous voice" +
+                " of the monkey crys out. The tendrils emerge, ready to strike at you.\n");
+            Console.WriteLine("Battle Start!");
+
+            ClearScreen();
+
+            // Initalizes the monstrous monkey's stats.
+            enemyHealth = 9;
+            enemySkillPoints = 3;
+            enemyPower = 5;
+            enemyDefense = 3;
+            enemyMagicPower = 4;
+            enemyMagicDefense = 1;
+
+            DoCombat();
+
+            if(playerHealth <= 0)
+            {
+                return;
+            }
+
+            Console.WriteLine("You still stand, though barely. The tendrils are relentless and the form \nyou face is inconcievable to your mind. And the screams, dear gods the screams.");
+            ClearScreen();
+            Console.WriteLine("Out of options, you swing at the beast wildly. Hitting the monstrous form with \nyour weapon. The futility of it is obvious, but you try anyway.");
+            ClearScreen();
+            Console.WriteLine("The screams begin to die down and the tendrils begin to fade back into nothing. \nThe form emerges from the shadows once more and a face forms, still \nshifting but for a moment" +
+                " you can clearly make it out. The face is anguished, \nbut it soon too dissolves into shadows. The torches light back up, and the \ncreature is gone. The screams, echo in your ear. Though," +
+                " whether they're \nstill there or just your imagination, it's hard to tell.");
+            ClearScreen();
+            Console.WriteLine("A voice suddenly starts up behind you. 'Punished for its hubris by those it sought \nto steal power from. How fitting.' You turn, as a form in a cloak walks towards you." +
+                " \nYou raise your weapon, though the figure simply waves the attempt aside with a gloved \nhand. 'I am not here to fight you, just to admire your work.' True to their word, they \nscan the room." +
+                " No sign of the beast, the goblins, or anything they could have left behind \ncan be seen. 'You did wonderful indeed, " + playerName + ".' As if they knew how you would react, they \nface you." +
+                " All that is visible know is a row of perfectly straight, perfectly white teeth, \nstaring at you from beneath the hood. 'Good work indeed.' They walk off, leaving you in \nthe quiet cave alone.");
+            ClearScreen();
         }
 
         /// <summary>
@@ -286,7 +339,9 @@ namespace HelloDungeon
                 if (enemySkillPoints > 0)
                 {
                     enemySkillPoints--;
-                    Console.WriteLine();
+                    Console.WriteLine("From the darkness, something emerges. The form shifts, assualting your mind with its presence.");
+                    playerHealth -= DealDamage(enemyMagicPower, playerMagicDefense);
+                    Console.WriteLine("You take " + DealDamage(enemyMagicPower, playerMagicDefense) + " damage!");
                 }
                 else
                 {
@@ -310,26 +365,37 @@ namespace HelloDungeon
             {
                 InitializeStats();
 
-                ClearScreen();
-
                 Encounter1And2();
 
-                if(playerHealth <= 0)
+                if (playerHealth <= 0)
                 {
-                    playerContinues = false;
-                    break;
+                    choice = GetInput("Would you like to play again?", "Yes", "No");
+                    if (choice == 1)
+                    {
+                        ClearScreen();
+                        break;
+                    }
+                    else if (choice == 2)
+                    {
+                        Console.WriteLine("Thank you for playing!");
+                        playerContinues = false;
+                        break;
+                    }
                 }
 
                 Encounter3();
 
-                choice = GetInput("Would you like to replay?", "Yes", "No");
-                if (choice == 1)
+                Encounter4();
+
+                choice = GetInput("Would you like to play again?", "Yes", "No");
+                if(choice == 1)
                 {
                     ClearScreen();
                 }
-                else if (choice == 2)
+                else if(choice == 2)
                 {
-                    Console.WriteLine("Thank you for playing");
+                    Console.WriteLine("Thank you for playing!");
+                    ClearScreen();
                     playerContinues = false;
                 }
             }
