@@ -147,11 +147,14 @@ namespace HelloDungeon
         /// </summary>
         void Encounter1And2()
         {
+
+            // This is the beginning of the riddle encounter.
             Console.WriteLine("A man approaches you, a monkey sits happily on his shoulder. As they get closer, they stop suddenly. \nDespite the hood over their face, shielding their eyes, it is clear that they are staring at you." +
                 " For \na moment, you stand there. Staring at the hooded figure. The monkey stands up, and puts a fist \nto its mouth. 'Ahem!' it coughs. 'I require you to solve my riddle! If you do, I'll grant you \n" +
                 "something few can ever hope to acquire.' It isn't every day that you come across monkeys giving \nriddles, so you accept the offer. 'However, you have only a few attempts. Four to be exact." +
                 " If \nyou cannot solve it in those attempts, you lose. And do not get your reward.'");
 
+            // This checks the number of attempts left and tells the user how many are left.
             int attempts = 4;
             for (int i = 0; i < 4; i++)
             {
@@ -180,11 +183,11 @@ namespace HelloDungeon
             }
 
             
-            // Starts the battle.
+            // Starts the first battle.
             Console.WriteLine("You come across a small goblin. It readies it's weapon to attack!");
             Console.WriteLine("Battle Start!");
 
-            // Initializes Goblin Stats
+            // Initializes the Goblins' stats
             enemyHealth = 6;
             enemyPower = 4;
             enemyDefense = 2;
@@ -201,6 +204,8 @@ namespace HelloDungeon
             Console.WriteLine("You stand tall, the goblin fallen before you. The monkey is seen, skittering towards the entrance of a cave.");
             while (validInputRecieved == false)
             {
+
+                // Gives the player the choice to run into the cave, or take a chance to heal.
                 choice = GetInput("Will you-", "Run into the cave!", "Wait and rest.");
                 if (choice == 1)
                 {
@@ -212,8 +217,12 @@ namespace HelloDungeon
                 {
                     Console.WriteLine("You find no reason to rush. After all, there's probably not another exit to that cave. So you sit and rest.");
                     ClearScreen();
+
                     Console.WriteLine("You feel refreshed! \nYou recovered " + (maxPlayerHealth - playerHealth) + " health and " + (maxPlayerSkillPoints - playerSkillPoints) + " skill points!");
+                    playerHealth = maxPlayerHealth;
+                    playerSkillPoints = maxPlayerSkillPoints;
                     ClearScreen();
+
                     Console.WriteLine("You stand from your makeshift campsite, prepared to face the challenge ahead. \nYou look back to your fallen foe, only to recoil as the body seems to have \nvanished!" +
                         " What remains is a small puddle of something viscous. Refreshed, \nbut now slightly unsettled, you make your way into the cave.");
                     ClearScreen();
@@ -242,13 +251,13 @@ namespace HelloDungeon
             ClearScreen();
             Console.WriteLine("The monkey's flesh begins to morph, \nas large, discolored tumors sprout from its back. It crys out, the growths changing the creature's form \ninto something monstrous. " +
                 "Something snuffs out the torches closest to it, keeping the \nmonkey's transformation hidden in shadow. The screams are clearly no longer that of something \nfrom this world. The goblin's" +
-                " attempt to run as tendrils rip through the darkness and impale \nthe goblins on them. The tendrils retreat with their prey." + " 'Oh gods! Help me!' The now distorted, \nmonstrous voice" +
+                " attempt to run as tendrils rip through the darkness and impale \nthe goblins on them. The tendrils retreat with their prey." + " 'Oh gods, why!' The now distorted, \nmonstrous voice" +
                 " of the monkey crys out. The tendrils emerge, ready to strike at you.\n");
             Console.WriteLine("Battle Start!");
 
             ClearScreen();
 
-            // Initalizes the monstrous monkey's stats.
+            // Initalizes the Monkeys'? stats.
             enemyHealth = 9;
             enemySkillPoints = 3;
             enemyPower = 5;
@@ -263,6 +272,8 @@ namespace HelloDungeon
                 return;
             }
 
+
+            // End of final encounter.
             Console.WriteLine("You still stand, though barely. The tendrils are relentless and the form \nyou face is inconcievable to your mind. And the screams, dear gods the screams.");
             ClearScreen();
             Console.WriteLine("Out of options, you swing at the beast wildly. Hitting the monstrous form with \nyour weapon. The futility of it is obvious, but you try anyway.");
@@ -284,11 +295,15 @@ namespace HelloDungeon
         void DoCombat()
         {
             bool validInputRecieved = false;
+
+            // Checks to see if either the player or the enemy is dead. If either are, combat cannot occur.
             while (playerHealth > 0 && enemyHealth > 0)
             {
                 while (validInputRecieved == false)
                 {
-                    choice = GetInput("What will you do?", "Attack", "Skills");
+
+                    // Gives the player a choice of either a physical or magic attack.
+                    choice = GetInput("What will you do?", "Attack", "Magic");
                     if (choice == 1)
                     {
                         Console.WriteLine("You take a swing at the foe with your weapon!");
@@ -297,29 +312,25 @@ namespace HelloDungeon
                         ClearScreen();
                         validInputRecieved = true;
                     }
+
+                    // Checks to see if the player knows fireball, if they do not, the skill cannot be used.
                     else if (choice == 2 && knowsFireBall)
                     {
-                        choice = GetInput("What will you use?", "Fireball", "Back");
-                        if (choice == 1)
+
+                        // Checks to see if the player has enough skill points to use fireball. If they don't, it lets them know.
+                        if (playerSkillPoints >= 2)
                         {
-                            if (playerSkillPoints >= 2)
-                            {
-                                playerSkillPoints -= 2;
-                                Console.WriteLine("You thrust your palm forward, a sphere of fire rockets out towards the\n foe, engulfing them in its flame.");
-                                enemyHealth -= DealDamage(playerMagicPower, enemyMagicDefense);
-                                Console.WriteLine("Foe takes " + DealDamage(playerMagicPower, enemyMagicDefense) + " damage!");
-                                ClearScreen();
-                                validInputRecieved = true;
-                            }
-                            else
-                            {
-                                Console.WriteLine("You do not have enough Skill Points to use that.");
-                                ClearScreen();
-                            }
-                        }
-                        else if (choice == 2)
-                        {
+                            playerSkillPoints -= 2;
+                            Console.WriteLine("You thrust your palm forward, a sphere of fire rockets out towards the \nfoe, engulfing them in its flame.");
+                            enemyHealth -= DealDamage(playerMagicPower, enemyMagicDefense);
+                            Console.WriteLine("Foe takes " + DealDamage(playerMagicPower, enemyMagicDefense) + " damage!");
+                            ClearScreen();
                             validInputRecieved = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You do not have enough Skill Points to use that.");
+                            ClearScreen();
                         }
                     }
                     else
@@ -336,13 +347,17 @@ namespace HelloDungeon
                     break;
                 }
 
+                // Checks to see if the enemy has skill points to do a special attack.
                 if (enemySkillPoints > 0)
                 {
                     enemySkillPoints--;
                     Console.WriteLine("From the darkness, something emerges. The form shifts, assualting your mind with its presence.");
                     playerHealth -= DealDamage(enemyMagicPower, playerMagicDefense);
                     Console.WriteLine("You take " + DealDamage(enemyMagicPower, playerMagicDefense) + " damage!");
+                    ClearScreen();
                 }
+
+                // Enemy's physical attack.
                 else
                 {
                     Console.WriteLine("The foe lashes out!");
@@ -350,6 +365,7 @@ namespace HelloDungeon
                     Console.WriteLine("You take " + DealDamage(enemyPower, playerDefense) + " damage!");
                     ClearScreen();
                 }
+
                 //Checks if the player is dead.
                 if (playerHealth <= 0)
                 {
@@ -363,40 +379,38 @@ namespace HelloDungeon
             bool playerContinues = true;
             while (playerContinues)
             {
+                // Start of the game.
                 InitializeStats();
 
                 Encounter1And2();
 
-                if (playerHealth <= 0)
+                // Checks to see if the player is alive befrore running through the rest of the game.
+                if (playerHealth > 0)
+                {
+                    Encounter3();
+
+                    Encounter4();
+                }
+
+                // At the end of the game, it checks to see if the player wishes to play again.
+                while (validInputRecieved == false)
                 {
                     choice = GetInput("Would you like to play again?", "Yes", "No");
                     if (choice == 1)
                     {
                         ClearScreen();
-                        break;
+                        validInputRecieved = true;
                     }
                     else if (choice == 2)
                     {
                         Console.WriteLine("Thank you for playing!");
+                        validInputRecieved = true;
                         playerContinues = false;
-                        break;
                     }
-                }
-
-                Encounter3();
-
-                Encounter4();
-
-                choice = GetInput("Would you like to play again?", "Yes", "No");
-                if(choice == 1)
-                {
-                    ClearScreen();
-                }
-                else if(choice == 2)
-                {
-                    Console.WriteLine("Thank you for playing!");
-                    ClearScreen();
-                    playerContinues = false;
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid input.");
+                    }
                 }
             }
         }
