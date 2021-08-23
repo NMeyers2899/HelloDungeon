@@ -47,8 +47,8 @@ namespace HelloDungeon
         /// <summary>
         /// Finds the difference between power and defense in order to change the target's health.
         /// </summary>
-        /// <param name="unitPower"></param>
-        /// <param name="targetDefense"></param>
+        /// <param name="unitPower"> The attacker's power or magic power. </param>
+        /// <param name="targetDefense"> The target's defense or magic defense. </param>
         /// <returns></returns>
         int DealDamage(int unitPower, int targetDefense)
         {
@@ -116,9 +116,9 @@ namespace HelloDungeon
         /// <summary>
         /// Gets the user's input by giving them a description of the choice and both possible options.
         /// </summary>
-        /// <param name="description"></param>
-        /// <param name="option1"></param>
-        /// <param name="option2"></param>
+        /// <param name="description"> The description of the choice. </param>
+        /// <param name="option1"> The first option the player may choose. </param>
+        /// <param name="option2"> The second option the player may choose. </param>
         /// <returns></returns>
         int GetInput(string description, string option1, string option2)
         {
