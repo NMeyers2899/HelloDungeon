@@ -2,6 +2,8 @@
 Welcome traveler! To a world of unrivaled thrill and adventure!
 Here, you will find all manner of horrid beasts with which to slay and find glory! 
 Who knows what you could find among the dark dungeons and the deadly caves?
+## How to Download
+Go to the projects section and download the file, then make sure to extract the files within.
 ## How to Play
 You begin the game as a nameless wanderer. 
 Throughout your adventure, you'll come across a number of scenarios that will ask you to pick one of two options.
